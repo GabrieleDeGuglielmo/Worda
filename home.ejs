@@ -1,5 +1,37 @@
 <html>
+<% const w=word.toUpperCase() %>
+
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
     <body>
-        
+        <div id="tries">
+            <table id="words">
+                <tr>
+                    <% for(var i=0; i<w.length-1; i++){ %>
+                        <td class="cell"><%=w[i]%></td>
+                        <% } %>
+                </tr>
+            </table>
+        </div>
+
+        <div id="keyboardDiv">
+            <table id="keyboard">
+                <tr>
+                    <td class="key">Q</td>
+                    <td class="key">W</td>
+                    <td class="key">E</td>
+                    <td class="key">R</td>
+                    <td class="key">T</td>
+                    <td class="key">Y</td>
+                    <td class="key">U</td>
+                    <td class="key">I</td>
+                    <td class="key">O</td>
+                    <td class="key">P</td>
+                </tr>
+            </table>
+        </div>
     </body>
+
 </html>
