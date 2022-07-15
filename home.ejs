@@ -3,32 +3,83 @@
 
     <head>
         <link rel="stylesheet" href="style.css">
+        <script>
+            let index=0;
+            let word=<%-JSON.stringify(word)%> //works
+            console.log(word);
+            //cancellazione tramite click su cella !!!
+
+            function input(letter){
+                if(index+1>=word.length){
+                    alert("Limite raggiunto")
+                    return;
+                }
+                index++;
+                document.getElementById(index).innerText=letter.toUpperCase()
+            }
+
+            function del(){
+                if(index<=0)
+                    return
+                document.getElementById(index--).innerText=""
+            }
+
+            function check(){
+                let input=[]
+                for(i=1; i<word.length-1; i++)
+                    input[i]=document.getElementById(i).innerText
+                
+            }
+
+        </script>
     </head>
 
     <body>
-        <div id="tries">
+        <div id="game">
             <table id="words">
                 <tr>
-                    <% for(var i=0; i<w.length-1; i++){ %>
-                        <td class="cell"><%=w[i]%></td>
+                    <% for(var i=1; i<w.length; i++){ %>
+                        <td class="cell" id="<%=i%>"></td>
                         <% } %>
                 </tr>
-            </table>
+            </table><br>
+            <span id="enter" onclick="check()">ENTER</span>
         </div>
 
-        <div id="keyboardDiv">
-            <table id="keyboard">
+        <div id="keyboard">
+            <table>
                 <tr>
-                    <td class="key">Q</td>
-                    <td class="key">W</td>
-                    <td class="key">E</td>
-                    <td class="key">R</td>
-                    <td class="key">T</td>
-                    <td class="key">Y</td>
-                    <td class="key">U</td>
-                    <td class="key">I</td>
-                    <td class="key">O</td>
-                    <td class="key">P</td>
+                    <td onclick="input('q')" class="key">Q</td>
+                    <td onclick="input('w')" class="key">W</td>
+                    <td onclick="input('e')" class="key">E</td>
+                    <td onclick="input('r')" class="key">R</td>
+                    <td onclick="input('t')" class="key">T</td>
+                    <td onclick="input('y')" class="key">Y</td>
+                    <td onclick="input('u')" class="key">U</td>
+                    <td onclick="input('i')" class="key">I</td>
+                    <td onclick="input('o')" class="key">O</td>
+                    <td onclick="input('p')" class="key">P</td>
+                </tr>
+                <tr>
+                    <td onclick="input('a')" class="key">A</td>
+                    <td onclick="input('s')" class="key">S</td>
+                    <td onclick="input('d')" class="key">D</td>
+                    <td onclick="input('f')" class="key">F</td>
+                    <td onclick="input('g')" class="key">G</td>
+                    <td onclick="input('h')" class="key">H</td>
+                    <td onclick="input('j')" class="key">J</td>
+                    <td onclick="input('k')" class="key">K</td>
+                    <td onclick="input('l')" class="key">L</td>
+                </tr>
+                <tr>
+                    <td onclick="input('z')" class="key">Z</td>
+                    <td onclick="input('x')" class="key">X</td>
+                    <td onclick="input('c')" class="key">C</td>
+                    <td onclick="input('v')" class="key">V</td>
+                    <td onclick="input('b')" class="key">B</td>
+                    <td onclick="input('n')" class="key">N</td>
+                    <td onclick="input('m')"class="key">M</td>
+                    <td onclick="del()" class="key"><--</td>
                 </tr>
             </table>
         </div>
