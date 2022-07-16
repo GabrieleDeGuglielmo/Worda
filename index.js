@@ -17,6 +17,25 @@ app.get("/", (req, res) => {
     readFile("./words", "utf-8", (err, res)=>{callback(err, res)})
 })
 
+app.get("/ajax", (req, res)=>{
+    const {input}=req.query
+    const callback=(error, result)=>{
+        if(error){
+            console.log(error);
+            return;
+        }
+        const words=result.split("\n")
+        console.log(input.join());
+        for(i=0; i<words.length; i++)
+            if(words[i]==input){
+                res.json({word: words[index]})
+                return
+            }
+        res.json({err: true})
+    }
+    readFile("./words", "utf-8", (err, res)=>{callback(err, res)})
+})
+
 app.get("/home", (req, res) => {
     res.redirect("/");
 });

@@ -24,11 +24,42 @@
                 document.getElementById(index--).innerText=""
             }
 
+            function ajaxCheck(input){
+                const xhr=new XMLHttpRequest()
+                xhr.responseType="json"
+                xhr.onload=()=>{
+                    console.log(xhr.response);
+                }//TOGLIERE VIRGOLE A INPUT
+                xhr.open("GET", "/ajax?input="+input, true)
+                xhr.send()
+            }
+
             function check(){
                 let input=[]
-                for(i=1; i<word.length-1; i++)
+                for(i=1; i<word.length; i++){
                     input[i]=document.getElementById(i).innerText
+                    if(input[i]==""){
+                        alert("Parola incompleta")
+                        return
+                    }
+                }
+
+                input.shift()
+
+                ajaxCheck(input)
                 
+                for(i=0; i<word.length; i++){
+                    for(k=0; k<input.length; k++){
+                        if(input[k].toLowerCase()==word[i])
+                            if(k==i){
+                                document.getElementById(input[k].toLowerCase()).style="background-color: lightgreen"
+                                document.getElementById(k+1).style="background-color: lightgreen"
+                            }else{
+                                document.getElementById(input[k].toLowerCase()).style="background-color: yellow"
+                                document.getElementById(k+1).style="background-color: yellow"
+                            }
+                    }
+                }
             }
 
         </script>
@@ -49,37 +80,37 @@
         <div id="keyboard">
             <table>
                 <tr>
-                    <td onclick="input('q')" class="key">Q</td>
-                    <td onclick="input('w')" class="key">W</td>
-                    <td onclick="input('e')" class="key">E</td>
-                    <td onclick="input('r')" class="key">R</td>
-                    <td onclick="input('t')" class="key">T</td>
-                    <td onclick="input('y')" class="key">Y</td>
-                    <td onclick="input('u')" class="key">U</td>
-                    <td onclick="input('i')" class="key">I</td>
-                    <td onclick="input('o')" class="key">O</td>
-                    <td onclick="input('p')" class="key">P</td>
+                    <td onclick="input('q')" id=q id=w class="key">Q</td>
+                    <td onclick="input('w')" id=w class="key">W</td>
+                    <td onclick="input('e')" id=e class="key">E</td>
+                    <td onclick="input('r')" id=r class="key">R</td>
+                    <td onclick="input('t')" id=t class="key">T</td>
+                    <td onclick="input('y')" id=y class="key">Y</td>
+                    <td onclick="input('u')" id=u class="key">U</td>
+                    <td onclick="input('i')" id=i class="key">I</td>
+                    <td onclick="input('o')" id=o class="key">O</td>
+                    <td onclick="input('p')" id=p class="key">P</td>
                 </tr>
                 <tr>
-                    <td onclick="input('a')" class="key">A</td>
-                    <td onclick="input('s')" class="key">S</td>
-                    <td onclick="input('d')" class="key">D</td>
-                    <td onclick="input('f')" class="key">F</td>
-                    <td onclick="input('g')" class="key">G</td>
-                    <td onclick="input('h')" class="key">H</td>
-                    <td onclick="input('j')" class="key">J</td>
-                    <td onclick="input('k')" class="key">K</td>
-                    <td onclick="input('l')" class="key">L</td>
+                    <td onclick="input('a')" id=a class="key">A</td>
+                    <td onclick="input('s')" id=s class="key">S</td>
+                    <td onclick="input('d')" id=d class="key">D</td>
+                    <td onclick="input('f')" id=f class="key">F</td>
+                    <td onclick="input('g')" id=g class="key">G</td>
+                    <td onclick="input('h')" id=h class="key">H</td>
+                    <td onclick="input('j')" id=j class="key">J</td>
+                    <td onclick="input('k')" id=k class="key">K</td>
+                    <td onclick="input('l')" id=l class="key">L</td>
                 </tr>
                 <tr>
-                    <td onclick="input('z')" class="key">Z</td>
-                    <td onclick="input('x')" class="key">X</td>
-                    <td onclick="input('c')" class="key">C</td>
-                    <td onclick="input('v')" class="key">V</td>
-                    <td onclick="input('b')" class="key">B</td>
-                    <td onclick="input('n')" class="key">N</td>
-                    <td onclick="input('m')"class="key">M</td>
-                    <td onclick="del()" class="key"><--</td>
+                    <td onclick="input('z')" id=z class="key">Z</td>
+                    <td onclick="input('x')" id=x class="key">X</td>
+                    <td onclick="input('c')" id=c class="key">C</td>
+                    <td onclick="input('v')" id=v class="key">V</td>
+                    <td onclick="input('b')" id=b class="key">B</td>
+                    <td onclick="input('n')" id=n class="key">N</td>
+                    <td onclick="input('m')"id=m class="key">M</td>
+                    <td onclick="del()" id="-" class="key"><--</td>
                 </tr>
             </table>
         </div>
