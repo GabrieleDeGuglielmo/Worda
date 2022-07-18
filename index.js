@@ -14,6 +14,7 @@ app.get("/", (req, res) => {
         const index=Math.floor(Math.random() * words.length)
         res.render(__dirname + "/home.ejs", {word: words[index]})
     }
+
     readFile("./words", "utf-8", (err, res)=>{callback(err, res)})
 })
 
