@@ -29,7 +29,7 @@
                 xhr.responseType="json"
                 xhr.onload=()=>{
                     console.log(xhr.response);
-                }//TOGLIERE VIRGOLE A INPUT
+                }
                 xhr.open("GET", "/ajax?input="+input, true)
                 xhr.send()
             }
@@ -45,8 +45,7 @@
                 }
 
                 input.shift()
-
-                ajaxCheck(input)
+                ajaxCheck(input.join("").toLowerCase())
                 
                 for(i=0; i<word.length; i++){
                     for(k=0; k<input.length; k++){
@@ -110,7 +109,7 @@
                     <td onclick="input('b')" id=b class="key">B</td>
                     <td onclick="input('n')" id=n class="key">N</td>
                     <td onclick="input('m')"id=m class="key">M</td>
-                    <td onclick="del()" id="-" class="key"><--</td>
+                    <td onclick="del()" id="del" class="key"><img src="freccia.png"></td>
                 </tr>
             </table>
         </div>

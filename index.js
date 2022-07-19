@@ -24,13 +24,15 @@ app.get("/ajax", (req, res)=>{
             console.log(error);
             return;
         }
+        console.log();
         const words=result.split("\n")
-        console.log(input.join());
-        for(i=0; i<words.length; i++)
+        for(i=0; i<words.length; i++){
+            console.log(words[i])
             if(words[i]==input){
                 res.json({word: words[index]})
                 return
             }
+        }
         res.json({err: true})
     }
     readFile("./words", "utf-8", (err, res)=>{callback(err, res)})
